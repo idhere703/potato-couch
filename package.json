@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "build": "./node_modules/.bin/webpack src/app.js dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/idhere703/potato-couch.git",
@@ -14,7 +15,10 @@
   },
   "homepage": "https://github.com/idhere703/potato-couch#readme",
   "dependencies": {
+    "pouchdb-browser": "^6.3.4"
+  },
+  "devDependencies": {
     "eslint": "^4.8.0",
-    "pouchdb": "^6.3.4"
+    "webpack": "^3.7.1"
   }
 }
