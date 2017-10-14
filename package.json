@@ -2,18 +2,19 @@
   "name": "potato-couch",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/idhere703/potato-couch.git"
-  },
+  "repository": "git+https://github.com/idhere703/potato-couch.git",
   "author": "Brandon Underwood",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/idhere703/potato-couch/issues"
   },
-  "homepage": "https://github.com/idhere703/potato-couch#readme"
+  "homepage": "https://github.com/idhere703/potato-couch#readme",
+  "dependencies": {
+    "eslint": "^4.8.0",
+    "pouchdb": "^6.3.4"
+  }
 }
