@@ -242,9 +242,9 @@ function immediate(task) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb_browser__ = __webpack_require__(5);
 
-const db = new __WEBPACK_IMPORTED_MODULE_0_pouchdb__["a" /* default */]('potato_database');
+const db = new __WEBPACK_IMPORTED_MODULE_0_pouchdb_browser__["a" /* default */]('potato_database');
 
 /***/ }),
 /* 5 */
@@ -1837,8 +1837,8 @@ Changes$2.prototype.validateChanges = function (opts) {
   var self = this;
 
   /* istanbul ignore else */
-  if (PouchDB$5._changesFilterPlugin) {
-    PouchDB$5._changesFilterPlugin.validate(opts, function (err) {
+  if (PouchDB$3._changesFilterPlugin) {
+    PouchDB$3._changesFilterPlugin.validate(opts, function (err) {
       if (err) {
         return callback(err);
       }
@@ -1879,10 +1879,10 @@ Changes$2.prototype.doChanges = function (opts) {
   }
 
   /* istanbul ignore else */
-  if (PouchDB$5._changesFilterPlugin) {
-    PouchDB$5._changesFilterPlugin.normalize(opts);
-    if (PouchDB$5._changesFilterPlugin.shouldFilter(this, opts)) {
-      return PouchDB$5._changesFilterPlugin.filter(this, opts);
+  if (PouchDB$3._changesFilterPlugin) {
+    PouchDB$3._changesFilterPlugin.normalize(opts);
+    if (PouchDB$3._changesFilterPlugin.shouldFilter(this, opts)) {
+      return PouchDB$3._changesFilterPlugin.filter(this, opts);
     }
   } else {
     ['doc_ids', 'filter', 'selector', 'view'].forEach(function (key) {
@@ -2888,9 +2888,9 @@ function parseAdapter(name, opts) {
     };
   }
 
-  var adapters = PouchDB$5.adapters;
-  var preferredAdapters = PouchDB$5.preferredAdapters;
-  var prefix = PouchDB$5.prefix;
+  var adapters = PouchDB$3.adapters;
+  var preferredAdapters = PouchDB$3.preferredAdapters;
+  var prefix = PouchDB$3.prefix;
   var adapterName = opts.adapter;
 
   if (!adapterName) { // automatically determine adapter
@@ -2950,12 +2950,12 @@ function prepareForDestruction(self) {
   self.constructor.emit('ref', self);
 }
 
-__WEBPACK_IMPORTED_MODULE_4_inherits___default()(PouchDB$5, AbstractPouchDB);
-function PouchDB$5(name, opts) {
+__WEBPACK_IMPORTED_MODULE_4_inherits___default()(PouchDB$3, AbstractPouchDB);
+function PouchDB$3(name, opts) {
   // In Node our test suite only tests this for PouchAlt unfortunately
   /* istanbul ignore if */
-  if (!(this instanceof PouchDB$5)) {
-    return new PouchDB$5(name, opts);
+  if (!(this instanceof PouchDB$3)) {
+    return new PouchDB$3(name, opts);
   }
 
   var self = this;
@@ -2970,7 +2970,7 @@ function PouchDB$5(name, opts) {
   this.__opts = opts = clone(opts);
 
   self.auto_compaction = opts.auto_compaction;
-  self.prefix = PouchDB$5.prefix;
+  self.prefix = PouchDB$3.prefix;
 
   if (typeof name !== 'string') {
     throw new Error('Missing/invalid DB name');
@@ -2984,10 +2984,10 @@ function PouchDB$5(name, opts) {
 
   self.name = name;
   self._adapter = opts.adapter;
-  PouchDB$5.emit('debug', ['adapter', 'Picked adapter: ', opts.adapter]);
+  PouchDB$3.emit('debug', ['adapter', 'Picked adapter: ', opts.adapter]);
 
-  if (!PouchDB$5.adapters[opts.adapter] ||
-      !PouchDB$5.adapters[opts.adapter].valid()) {
+  if (!PouchDB$3.adapters[opts.adapter] ||
+      !PouchDB$3.adapters[opts.adapter].valid()) {
     throw new Error('Invalid Adapter: ' + opts.adapter);
   }
 
@@ -2996,23 +2996,23 @@ function PouchDB$5(name, opts) {
 
   self.adapter = opts.adapter;
 
-  PouchDB$5.adapters[opts.adapter].call(self, opts, function (err) {
+  PouchDB$3.adapters[opts.adapter].call(self, opts, function (err) {
     if (err) {
       return self.taskqueue.fail(err);
     }
     prepareForDestruction(self);
 
     self.emit('created', self);
-    PouchDB$5.emit('created', self.name);
+    PouchDB$3.emit('created', self.name);
     self.taskqueue.ready(self);
   });
 
 }
 
-PouchDB$5.adapters = {};
-PouchDB$5.preferredAdapters = [];
+PouchDB$3.adapters = {};
+PouchDB$3.preferredAdapters = [];
 
-PouchDB$5.prefix = '_pouch_';
+PouchDB$3.prefix = '_pouch_';
 
 var eventEmitter = new __WEBPACK_IMPORTED_MODULE_3_events__["EventEmitter"]();
 
@@ -3065,35 +3065,35 @@ function setUpEventEmitter(Pouch) {
   });
 }
 
-setUpEventEmitter(PouchDB$5);
+setUpEventEmitter(PouchDB$3);
 
-PouchDB$5.adapter = function (id, obj, addToPreferredAdapters) {
+PouchDB$3.adapter = function (id, obj, addToPreferredAdapters) {
   /* istanbul ignore else */
   if (obj.valid()) {
-    PouchDB$5.adapters[id] = obj;
+    PouchDB$3.adapters[id] = obj;
     if (addToPreferredAdapters) {
-      PouchDB$5.preferredAdapters.push(id);
+      PouchDB$3.preferredAdapters.push(id);
     }
   }
 };
 
-PouchDB$5.plugin = function (obj) {
+PouchDB$3.plugin = function (obj) {
   if (typeof obj === 'function') { // function style for plugins
-    obj(PouchDB$5);
+    obj(PouchDB$3);
   } else if (typeof obj !== 'object' || Object.keys(obj).length === 0) {
     throw new Error('Invalid plugin: got "' + obj + '", expected an object or a function');
   } else {
     Object.keys(obj).forEach(function (id) { // object style for plugins
-      PouchDB$5.prototype[id] = obj[id];
+      PouchDB$3.prototype[id] = obj[id];
     });
   }
   if (this.__defaults) {
-    PouchDB$5.__defaults = $inject_Object_assign({}, this.__defaults);
+    PouchDB$3.__defaults = $inject_Object_assign({}, this.__defaults);
   }
-  return PouchDB$5;
+  return PouchDB$3;
 };
 
-PouchDB$5.defaults = function (defaultOpts) {
+PouchDB$3.defaults = function (defaultOpts) {
   function PouchAlt(name, opts) {
     if (!(this instanceof PouchAlt)) {
       return new PouchAlt(name, opts);
@@ -3108,15 +3108,15 @@ PouchDB$5.defaults = function (defaultOpts) {
     }
 
     opts = $inject_Object_assign({}, PouchAlt.__defaults, opts);
-    PouchDB$5.call(this, name, opts);
+    PouchDB$3.call(this, name, opts);
   }
 
-  __WEBPACK_IMPORTED_MODULE_4_inherits___default()(PouchAlt, PouchDB$5);
+  __WEBPACK_IMPORTED_MODULE_4_inherits___default()(PouchAlt, PouchDB$3);
 
-  PouchAlt.preferredAdapters = PouchDB$5.preferredAdapters.slice();
-  Object.keys(PouchDB$5).forEach(function (key) {
+  PouchAlt.preferredAdapters = PouchDB$3.preferredAdapters.slice();
+  Object.keys(PouchDB$3).forEach(function (key) {
     if (!(key in PouchAlt)) {
-      PouchAlt[key] = PouchDB$5[key];
+      PouchAlt[key] = PouchDB$3[key];
     }
   });
 
@@ -4188,12 +4188,12 @@ function applyChangesFilterPlugin(PouchDB) {
 }
 
 // TODO: remove from pouchdb-core (breaking)
-PouchDB$5.plugin(debugPouch);
+PouchDB$3.plugin(debugPouch);
 
 // TODO: remove from pouchdb-core (breaking)
-PouchDB$5.plugin(applyChangesFilterPlugin);
+PouchDB$3.plugin(applyChangesFilterPlugin);
 
-PouchDB$5.version = version;
+PouchDB$3.version = version;
 
 function toObject(array) {
   return array.reduce(function (obj, item) {
@@ -12441,17 +12441,13 @@ function replication(PouchDB) {
   };
 }
 
-PouchDB$5.plugin(IDBPouch)
+PouchDB$3.plugin(IDBPouch)
   .plugin(WebSqlPouch)
   .plugin(HttpPouch$1)
   .plugin(mapreduce)
   .plugin(replication);
 
-// Pull from src because pouchdb-node/pouchdb-browser themselves
-// are aggressively optimized and jsnext:main would normally give us this
-// aggressive bundle.
-
-/* harmony default export */ __webpack_exports__["a"] = (PouchDB$5);
+/* harmony default export */ __webpack_exports__["a"] = (PouchDB$3);
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
