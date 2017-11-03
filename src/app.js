@@ -2,7 +2,6 @@ import PouchDB from 'pouchdb-browser';
 import './app.css';
 const db = new PouchDB('potato_database');
 
-
 const fadeIn = (msgSelector) => {
     //get the welcome msg element
     const $all_msg = $(msgSelector);
@@ -27,3 +26,15 @@ const fadeIn = (msgSelector) => {
     });
 
 };
+
+
+function component() {
+    var element = document.createElement('div');
+
+    element.innerHTML = ['Webpack', 'config'].join(' ');
+
+    return element;
+}
+
+let element = component(); // Store the element to re-render on print.js changes
+document.body.appendChild(element);
