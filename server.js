@@ -11,6 +11,8 @@ const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
-
+app.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 // Serve the files on port 3000.
-app.listen(3000, function() {});
+app.listen(3000);

@@ -4,9 +4,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-    entry: {
-        app: './src/app.js'
-    },
+    entry: './src/app.js',
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Output Management'
@@ -20,11 +18,16 @@ module.exports = {
         hot: true
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
     module: {
+        loaders: [{
+            test: /\.js?$/,
+            exclude: /node_modules/,
+            loader: 'babel'
+        }],
         rules: [
             {
                 test: /\.css$/,

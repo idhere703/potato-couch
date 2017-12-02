@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/idhere703/potato-couch#readme",
   "dependencies": {
-    "pouchdb-browser": "^6.3.4"
+    "pouchdb-browser": "^6.3.4",
+    "react": "^16.2.0"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
