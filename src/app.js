@@ -1,3 +1,2 @@
-import PouchDB from 'pouchdb-browser';
-import './app.css';
-const db = new PouchDB('potato_database');
+import PouchDB from 'pouchdb';
+const db = new PouchDB('students');
